@@ -48,7 +48,8 @@ function srwp_register_post_type(){
 	        	'title', 
 	       /*  	'editor',  */
 	        	'author', 
-	        /*	'custom-fields' */
+			/*	'custom-fields' */
+			'thumbnail'
 	        )
 	);
 	register_post_type( $slug, $args );

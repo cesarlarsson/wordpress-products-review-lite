@@ -19,57 +19,55 @@ function srwp_meta_callback($post){
 	//var_dump($dwwp_stored_meta);
 	//die();
     ?>
-    <div>
+    <div>option <?php $t= get_option( 'wporg_options' ); print_r($t); ?>
     <div class="meta-row">
 			<div class="meta-th">
-				<label for="job-id" class="dwwp-row-title"><?php _e( 'Job Id', 'wp-job-listing' ); ?></label>
+				<label for="product-name" class="dwwp-row-title"><?php _e( 'Product Name', 'wp-job-listing' ); ?></label>
 			</div>
 			<div class="meta-td">
-				<input type="text" class="dwwp-row-content" name="job_id" id="job-id"
-				value="<?php if ( ! empty ( $dwwp_stored_meta['job_id'] ) ) {
-					echo esc_attr( $dwwp_stored_meta['job_id'][0] );
+				<input type="text" class="dwwp-row-content" name="product-name" id="product-name"
+				value="<?php if ( ! empty ( $dwwp_stored_meta['product-name'] ) ) {
+					echo esc_attr( $dwwp_stored_meta['product-name'][0] );
 				} ?>"/>
 			</div>
-		</div>
+	</div>
         <div class="meta-row">
             <div class="meta-th">
-                <label for="job-id" class="dwwp-row-title">Score</label>
+                <label for="release-date" class="dwwp-row-release-date"><?php _e( 'Release date', 'wp-job-listing' ); ?></label>
             </div>
             <div class="meta-td">
-                <input type="text" name="job-id" id="score" class="datepicker" value="<?php if ( ! empty ( $dwwp_stored_meta['job_id'] ) ) {
-					echo esc_attr( $dwwp_stored_meta['score'][0] );
+                <input type="text" name="release-date" id="release-date" class="datepicker" value="<?php if ( ! empty ( $dwwp_stored_meta['release-date'] ) ) {
+					echo esc_attr( $dwwp_stored_meta['release-date'][0] );
 				} ?>" />
             </div>
         </div>
+
         <div class="meta-row">
 			<div class="meta-th">
-				<label for="application_deadline" class="dwwp-row-title">Application Deadline</label>
+				<label for="price" class="dwwp-row-title"><?php _e( 'Price', 'wp-job-listing' ); ?></label>
 			</div>
 			<div class="meta-td">
-				<input type="text" name="application_deadline" id="application_deadline" value="<?php if ( ! empty ( $dwwp_stored_meta['application_deadline'] ) ) {
-					echo esc_attr( $dwwp_stored_meta['application_deadline'][0] );
+				<input type="text" name="price" id="price" value="<?php if ( ! empty ( $dwwp_stored_meta['price'] ) ) {
+					echo esc_attr( $dwwp_stored_meta['price'][0] );
 				} ?>"/>
 			</div>
 		</div>
-		<div class="meta">
+		<div class="meta-row">
 			<div class="meta-th">
-				<span>Principle Duties</span>
+				<span>Rating</span>
+			</div>
+			<div class="meta-th">
+				<div id="rateYo" data-color="<?=$t['wporg_field_pill']?>"></div>
+			<input type="text" name="rating_value" id="rating_value" value="<?php if ( ! empty ( $dwwp_stored_meta['rating_value'] ) ) {
+						echo esc_attr( $dwwp_stored_meta['rating_value'][0] );
+					} ?>"/>
 			</div>
 		</div>
-
-		<div id="testRater" class="stat">
-		<label for="rating">Rating</label>
-		<div class="statVal">
-			<span class="ui-rater">
-				<span class="ui-rater-starsOff" style="width:90px;"><span class="ui-rater-starsOn" style="width:63px"></span></span>
-				<span class="ui-rater-rating">3.5</span>&#160;(<span class="ui-rater-rateCount">2</span>)
-			</span>
-        </div>
-    </div>
+		
 		<div class="meta-editor"></div>
 		<?php
-		$content = get_post_meta( $post->ID, 'principle_duties', true );
-		$editor = 'principle_duties';
+		$content = get_post_meta( $post->ID, 'product_information', true );
+		$editor = 'product_information';
 		$settings = array(
 			'textarea_rows' => 8,
 			'media_buttons' => false,
@@ -77,19 +75,7 @@ function srwp_meta_callback($post){
 		wp_editor( $content, $editor, $settings);
         ?>
     </div>
-	<div class="meta-row">
-        	<div class="meta-th">
-	          <label for="preferred-requirements" class="dwwp-row-title"><?php _e( 'Preferred Requirements', 'wp-job-listing' ) ?></label>
-	        </div>
-	        <div class="meta-td">
-	          <textarea name="preferred_requirements" class="dwwp-textarea" id="preferred-requirements"><?php
-			          if ( ! empty ( $dwwp_stored_meta['preferred_requirements'] ) ) {
-			            echo esc_attr( $dwwp_stored_meta['preferred_requirements'][0] );
-			          }
-		          ?>
-	          </textarea>
-	        </div>
-	    </div>
+
     <?php
 
 }
@@ -104,18 +90,27 @@ function srwp_meta_save( $post_id ) {
         return;
     }
 
-    if ( isset( $_POST[ 'job_id' ] ) ) {
-    	update_post_meta( $post_id, 'job_id', sanitize_text_field( $_POST[ 'job_id' ] ) );
+    if ( isset( $_POST[ 'product-name' ] ) ) {
+    	update_post_meta( $post_id, 'product-name', sanitize_text_field( $_POST[ 'product-name' ] ) );
 	}
-	if ( isset( $_POST[ 'application_deadline' ] ) ) {
-    	update_post_meta( $post_id, 'application_deadline', sanitize_text_field( $_POST[ 'application_deadline' ] ) );
+	if ( isset( $_POST[ 'release-date' ] ) ) {
+    	update_post_meta( $post_id, 'release-date', sanitize_text_field( $_POST[ 'release-date' ] ) );
 	}
-	if ( isset( $_POST[ 'principle_duties' ] ) ) {
-    	update_post_meta( $post_id, 'principle_duties', sanitize_text_field( $_POST[ 'principle_duties' ] ) );
-    }
+	if ( isset( $_POST[ 'price' ] ) ) {
+    	update_post_meta( $post_id, 'price', sanitize_text_field( $_POST[ 'price' ] ) );
+	}
+	if ( isset( $_POST[ 'rating_value' ] ) ) {
+		update_post_meta( $post_id, 'rating_value', wp_kses_post( $_POST[ 'rating_value' ] ) );
+	}
+	if ( isset( $_POST[ 'product_information' ] ) ) {
+		update_post_meta( $post_id, 'product_information', wp_kses_post( $_POST[ 'product_information' ] ) );
+	}
+	
 	if ( isset( $_POST[ 'preferred_requirements' ] ) ) {
 		update_post_meta( $post_id, 'preferred_requirements', wp_kses_post( $_POST[ 'preferred_requirements' ] ) );
 	}
+
+	
 }
 
 add_action( 'save_post', 'srwp_meta_save' );

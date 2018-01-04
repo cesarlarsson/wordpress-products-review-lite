@@ -68,6 +68,7 @@
    function wporg_field_pill_cb( $args ) {
     // get the value of the setting we've registered with register_setting()
     $options = get_option( 'wporg_options' );
+    print_r($options);
     // output the field
     ?>
     <select id="<?php echo esc_attr( $args['label_for'] ); ?>"
@@ -79,6 +80,9 @@
     </option>
     <option value="blue" <?php echo isset( $options[ $args['label_for'] ] ) ? ( selected( $options[ $args['label_for'] ], 'blue', false ) ) : ( '' ); ?>>
     <?php esc_html_e( 'blue pill', 'wporg' ); ?>
+    </option>
+    <option value="green" <?php echo isset( $options[ $args['label_for'] ] ) ? ( selected( $options[ $args['label_for'] ], 'green', false ) ) : ( '' ); ?>>
+    <?php esc_html_e( 'green pill', 'wporg' ); ?>
     </option>
     </select>
     <p class="description">
