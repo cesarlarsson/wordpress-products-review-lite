@@ -8,25 +8,27 @@
 /**
  * custom option and settings
  */
- function wporg_settings_init() {
+ function product_review_settings_init()  {
     // register a new setting for "wporg" page
-    register_setting( 'wporg', 'wporg_options' );
+    register_setting( 'previewoption', 'wporg_options' );
+    register_setting( 'previewoption', 'color_options' );
+
 
     // register a new section in the "wporg" page
     add_settings_section(
         'wporg_section_developers',
-        __( 'The Matrix has you.', 'wporg' ),
+        __( 'The Matrix has you.', 'previewoption' ),
         'wporg_section_developers_cb',
-        'wporg'
+        'previewoption'
     );
     
     // register a new field in the "wporg_section_developers" section, inside the "wporg" page
     add_settings_field(
         'wporg_field_pill', // as of WP 4.6 this value is used only internally
         // use $args' label_for to populate the id inside the callback
-        __( 'Pill', 'wporg' ),
+        __( 'Pill', 'previewoption' ),
         'wporg_field_pill_cb',
-        'wporg',
+        'previewoption',
         'wporg_section_developers',
         [
         'label_for' => 'wporg_field_pill',
@@ -34,12 +36,30 @@
         'wporg_custom_data' => 'custom',
         ]
     );
-   }
+
+    add_settings_field(
+        'previewoption_field_color_options', // as of WP 4.6 this value is used only internally
+        // use $args' label_for to populate the id inside the callback
+        __( 'Star Color', 'previewoption' ),
+        'previewoption_field_color_cb',
+        'previewoption',
+        'wporg_section_developers',
+        [
+        'label_for' => 'previewoption_field_color',
+        'class' => 'wporg_row',
+        'wporg_custom_data' => 'custom',
+        ]
+    );
     
+
+        
+
+   }
+
    /**
-    * register our wporg_settings_init to the admin_init action hook
+    * register the product review settings
     */
-   add_action( 'admin_init', 'wporg_settings_init' );
+   add_action( 'admin_init', 'product_review_settings_init' );
     
    /**
     * custom option and settings:
@@ -56,7 +76,19 @@
     <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Follow the white rabbit.', 'wporg' ); ?></p>
     <?php
    }
-    
+
+    function previewoption_field_color_cb($args){
+        
+        $options = get_option( 'color_options' );
+         // output the field
+         ?>        
+         
+       <input type="text" name="color_options[<?php echo esc_attr( $args['label_for'] ); ?>]" value="<?= $options['previewoption_field_color'] ?>" class="cpa-color-picker" >
+   
+         
+         <?php
+
+    }
    // pill field cb
     
    // field callbacks can accept an $args parameter, which is an array.
@@ -68,7 +100,7 @@
    function wporg_field_pill_cb( $args ) {
     // get the value of the setting we've registered with register_setting()
     $options = get_option( 'wporg_options' );
-    print_r($options);
+   
     // output the field
     ?>
     <select id="<?php echo esc_attr( $args['label_for'] ); ?>"
@@ -91,6 +123,7 @@
     <p class="description">
     <?php esc_html_e( 'You take the red pill and you stay in Wonderland and I show you how deep the rabbit-hole goes.', 'wporg' ); ?>
     </p>
+    
     <?php
    }
     
@@ -155,10 +188,10 @@
     <form action="options.php" method="post">
     <?php
     // output security fields for the registered setting "wporg"
-    settings_fields( 'wporg' );
+    settings_fields( 'previewoption' );
     // output setting sections and their fields
     // (sections are registered for "wporg", each field is registered to a specific section)
-    do_settings_sections( 'wporg' );
+    do_settings_sections( 'previewoption' );
     // output save settings button
     submit_button( 'Save Settings' );
     ?>

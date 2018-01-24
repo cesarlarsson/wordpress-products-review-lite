@@ -35,16 +35,22 @@ function srwp_admin_enqueue_scripts(){
 
 
     //var_dump($typenow);
-    if ( ($pagenow == 'post.php' || $pagenow == 'post-new.php') && $typenow == 'product_review' ) {
+    if ( ($pagenow == 'post.php' || $pagenow == 'post-new.php' ) && $typenow == 'product_review' ) {
+        wp_enqueue_media();
+
         //wp_enqueue_script( 'srwp-job-js', plugins_url( 'scripts/jquery.rater-1.1.js', __FILE__ ), array( 'jquery' ), '20150204', true );
         wp_enqueue_script( 'srwp-rateyo', plugins_url( 'scripts/jquery.rateyo.min.js', __FILE__ ), array( 'jquery' ), '20150204', true );
         //wp_enqueue_script( 'srwp-job-js', plugins_url( 'scripts/admin-review22.js', __FILE__ ), array( 'jquery', 'jquery-ui-datepicker' ), '2015032423', true );
-        wp_enqueue_script( 'srwp-admin-review', plugins_url( 'scripts/admin-review.js', __FILE__ ), array('jquery'), '2015032423', true );
+        wp_enqueue_script( 'srwp-admin-review', plugins_url( 'scripts/admin-review.js', __FILE__ ), array('jquery','wp-color-picker'), '20180110', true );        
 		wp_enqueue_style( 'jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
         wp_enqueue_style( 'jquery-style-rateyo', plugins_url( 'css/jquery.rateyo.min.css', __FILE__ ) );
         wp_enqueue_script( 'srwp_img_upload', plugins_url( 'scripts/image-upload.js', __FILE__ ), array('jquery', 'media-upload'), '0.0.2', true );
         
         wp_localize_script( 'srwp_img_upload', 'customUploads', array( 'imageData' => get_post_meta( get_the_ID(), 'custom_image_data', true ) ) );
+    } else if ( $pagenow == 'edit.php' && $typenow == 'product_review'){
+        // Add the color picker css file       
+        wp_enqueue_style( 'wp-color-picker' ); 
+        wp_enqueue_script( 'srwp-admin-review', plugins_url( 'scripts/setting.js', __FILE__ ), array('jquery','wp-color-picker'), '20180110', true );
     }
 }
 
