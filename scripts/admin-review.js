@@ -1,6 +1,13 @@
 
 jQuery(document).ready(function() {
-    jQuery('.datepicker').datepicker();
+    jQuery('.datepicker').datepicker({
+        //comment the beforeShow handler if you want to see the ugly overlay
+        beforeShow: function() {
+            setTimeout(function(){
+                jQuery('.ui-datepicker').css('z-index', 99999999999999);
+            }, 0);
+    }
+    });
 
     jQuery("#rateYo").on("rateyo.init", function (e, data) {
         

@@ -16,10 +16,12 @@ function srwp_meta_callback($post){
 
     wp_nonce_field( basename( __FILE__ ), 'dwwp_jobs_nonce' );
 	$dwwp_stored_meta = get_post_meta( $post->ID );
-	//var_dump($dwwp_stored_meta);
-	//die();
     ?>
-    <div>option <?php $t= get_option( 'wporg_options' ); print_r($t); ?>
+    <div>
+	<?php $number_starts = get_option( 'srpr_number_of_stars' ); 
+		$main_color = get_option( 'srpr_color_options' ); 
+		$second_color = get_option( 'srpr_second_color_options' );
+	?>
     <div class="meta-row">
 			<div class="meta-th">
 				<label for="product-name" class="dwwp-row-title"><?php _e( 'Product Name', 'wp-job-listing' ); ?></label>
@@ -57,8 +59,11 @@ function srwp_meta_callback($post){
 				<span>Rating</span>
 			</div>
 			<div class="meta-th">
-				<div id="rateYo" data-color="<?=$t['wporg_field_pill']?>"></div>
-			<input type="text" name="rating_value" id="rating_value" value="<?php if ( ! empty ( $dwwp_stored_meta['rating_value'] ) ) {
+				<div id="rateYo" data-rateyo-normal-fill="<?= $second_color['previewoption_field_second_color']  ?>" 
+								data-rateyo-rated-fill="<?= $main_color['previewoption_field_color'] ?>" 
+								data-rateyo-num-stars="<?= $number_starts['previewoption_field_number']?>" 
+				data-color="<?=$t['wporg_field_pill']?>"></div>
+			<input type="text" readonly  name="rating_value" id="rating_value" value="<?php if ( ! empty ( $dwwp_stored_meta['rating_value'] ) ) {
 						echo esc_attr( $dwwp_stored_meta['rating_value'][0] );
 					} ?>"/>
 			</div>
