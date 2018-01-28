@@ -17,10 +17,11 @@ if (! defined("ABSPATH")){
 $dir = plugin_dir_path(__FILE__);
 
 
-require_once($dir ."sr-product-reviews-custom-post-type.php");
-require_once($dir ."wp-product-review-fields.php");
-require_once($dir ."wp-product-review-render-admin.php");
-require_once($dir ."wp-image-upload-metabox.php");
+require_once($dir ."srpr-product-reviews-custom-post-type.php");
+require_once($dir ."srpr-product-review-fields.php");
+require_once($dir ."srpr-product-review-render-admin.php");
+require_once($dir ."srpr-image-upload-metabox.php");
+require_once($dir ."srpr-widget-definition.php");
 
 
 
@@ -56,3 +57,12 @@ function srwp_admin_enqueue_scripts(){
 
 add_action('admin_enqueue_scripts','srwp_admin_enqueue_scripts');
 
+
+//Scripts
+function srwp_wp_enqueue_scripts(){
+
+    wp_enqueue_style('custom-style', plugins_url( '/css/srwp-widget-styles.css', __FILE__ ));
+
+}
+
+add_action('wp_enqueue_scripts','srwp_wp_enqueue_scripts');
