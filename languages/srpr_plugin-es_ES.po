@@ -1,0 +1,42 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Product Review Lite\n"
+"Last-Translator: \n"
+"Language-Team: "
+"Language: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: inc\n"
+
+
+msgid "Product Review"
+msgstr "Calificar Producto"
+
+msgid "Price"
+msgstr "Precio"
+
+msgid "Product Name"
+msgstr "Nombre del Producto"
+
+msgid "Release date"
+msgstr "Fecha de Lanzamiento"
+
+msgid "Rating"
+msgstr "Calificación"
+
+msgid "Add New"
+msgstr "Agregar nuevo"
+
+msgid "Product Categories"
+msgstr "Categorias de Productos"
+
+msgid "Product Category"
+msgstr "Categorias de Producto"
+
+msgid "Settings"
+msgstr "Configuración"

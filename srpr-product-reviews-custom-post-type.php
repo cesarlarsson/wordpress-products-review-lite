@@ -7,8 +7,8 @@ function srwp_register_post_type(){
 	$labels = array(
 		'name' 			=> $plural,
 		'singular_name' 	=> $singular,
-		'add_new' 		=> 'Add New',
-		'add_new_item'  	=> 'Add New ' . $singular,
+		'add_new' 		=> __('Add New','srpr_plugin'),
+		'add_new_item'  	=> __('Add New','srpr_plugin').' ' . $singular,
 		'edit'		        => 'Edit',
 		'edit_item'	        => 'Edit ' . $singular,
 		'new_item'	        => 'New ' . $singular,
@@ -57,8 +57,8 @@ function srwp_register_post_type(){
 }
 
 function srwp_register_taxonomy() {
-	$singular = 'Product Category';
-	$plural = 'Product Categories';
+	$singular = __('Product Category','srpr_plugin');
+	$plural = __('Product Categories','srpr_plugin');
 	$slug = str_replace( ' ', '_', strtolower( $singular ) );
 	$labels = array(
 		'name'                       => $plural,
@@ -70,7 +70,7 @@ function srwp_register_taxonomy() {
         'parent_item_colon'          => null,
         'edit_item'                  => 'Edit ' . $singular,
         'update_item'                => 'Update ' . $singular,
-        'add_new_item'               => 'Add New ' . $singular,
+        'add_new_item'               => __('Add New','srpr_plugin').' ' . $singular,
         'new_item_name'              => 'New ' . $singular . ' Name',
         'separate_items_with_commas' => 'Separate ' . $plural . ' with commas',
         'add_or_remove_items'        => 'Add or remove ' . $plural,

@@ -6,6 +6,8 @@
 * Author URI: smartrabbit.co
 * Version: 0.1
 * License: GPLv2
+* Text Domain: srpr-plugin-i18n
+* Domain Path: /languages/
 **/
 
 //Exit if accessed directly
@@ -39,9 +41,7 @@ function srwp_admin_enqueue_scripts(){
     if ( ($pagenow == 'post.php' || $pagenow == 'post-new.php' ) && $typenow == 'product_review' ) {
         wp_enqueue_media();
 
-        //wp_enqueue_script( 'srwp-job-js', plugins_url( 'scripts/jquery.rater-1.1.js', __FILE__ ), array( 'jquery' ), '20150204', true );
-        wp_enqueue_script( 'srwp-rateyo', plugins_url( 'scripts/jquery.rateyo.min.js', __FILE__ ), array( 'jquery' ), '20150204', true );
-        //wp_enqueue_script( 'srwp-job-js', plugins_url( 'scripts/admin-review22.js', __FILE__ ), array( 'jquery', 'jquery-ui-datepicker' ), '2015032423', true );
+        wp_enqueue_script( 'srwp-rateyo', plugins_url( 'scripts/jquery.rateyo.min.js', __FILE__ ), array( 'jquery' ), '20150204', true );     
         wp_enqueue_script( 'srwp-admin-review', plugins_url( 'scripts/admin-review.js', __FILE__ ), array('jquery','wp-color-picker'), '20180110', true );        
 		wp_enqueue_style( 'jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
         wp_enqueue_style( 'jquery-style-rateyo', plugins_url( 'css/jquery.rateyo.min.css', __FILE__ ) );
@@ -55,8 +55,6 @@ function srwp_admin_enqueue_scripts(){
     }
 }
 
-add_action('admin_enqueue_scripts','srwp_admin_enqueue_scripts');
-
 
 //Scripts
 function srwp_wp_enqueue_scripts(){
@@ -65,4 +63,10 @@ function srwp_wp_enqueue_scripts(){
 
 }
 
+function load_plugin_textdomain2() {
+    load_plugin_textdomain( 'srpr_plugin', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+  }
+
+add_action('admin_enqueue_scripts','srwp_admin_enqueue_scripts');
 add_action('wp_enqueue_scripts','srwp_wp_enqueue_scripts');
+add_action( 'plugins_loaded', 'load_plugin_textdomain2' );

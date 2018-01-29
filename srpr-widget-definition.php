@@ -1,12 +1,12 @@
 <?php
 // The widget class
-class My_Custom_Widget extends WP_Widget {
+class Product_review_list_Widget extends WP_Widget {
 
 	// Main constructor
 	public function __construct() {
 		parent::__construct(
-            'my_custom_widget',
-            __( 'My Custom Widget', 'text_domain' ),
+            'product_review_list_widget',
+            __( 'Last Products Review', 'text_domain' ),
             array(
                 'customize_selective_refresh' => true,
             )
@@ -21,8 +21,6 @@ public function form( $instance ) {
         $defaults = array(
             'title'    => '',
             'text'     => '',
-            'textarea' => '',
-            'checkbox' => '',
             'select'   => '',
         );
         
@@ -47,11 +45,6 @@ public function form( $instance ) {
             <textarea class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'textarea' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'textarea' ) ); ?>"><?php echo wp_kses_post( $textarea ); ?></textarea>
         </p>
     
-        <?php // Checkbox ?>
-        <p>
-            <input id="<?php echo esc_attr( $this->get_field_id( 'checkbox' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'checkbox' ) ); ?>" type="checkbox" value="1" <?php checked( '1', $checkbox ); ?> />
-            <label for="<?php echo esc_attr( $this->get_field_id( 'checkbox' ) ); ?>"><?php _e( 'Checkbox', 'text_domain' ); ?></label>
-        </p>
     
         <?php // Dropdown ?>
         <p>
@@ -150,7 +143,7 @@ public function widget( $args, $instance ) {
 }
 
 // Register the widget
-function my_register_custom_widget() {
-	register_widget( 'My_Custom_Widget' );
+function srpr_last_products_list() {
+	register_widget( 'Product_review_list_Widget' );
 }
-add_action( 'widgets_init', 'my_register_custom_widget' );
+add_action( 'widgets_init', 'srpr_last_products_list' );

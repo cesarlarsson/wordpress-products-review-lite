@@ -17,7 +17,7 @@
     // register a new section for the setting of the product review plugin
     add_settings_section(
         'previewoption_section_developers',
-        __( 'Custom the Product  Lite Plugin', 'previewoption' ),
+        __( 'Custom the Product  Lite Plugin', 'srpr_plugin' ),
         'previewoption_section_developers_cb',
         'previewoption'
     );
@@ -135,7 +135,7 @@
       add_submenu_page( 
         'edit.php?post_type=product_review',
          'Settings',
-         'Settings', 
+         __('Settings','srpr_plugin'), 
          'manage_options', 
          'product_review_settings', 
          'previewoption_options_page_html'); 

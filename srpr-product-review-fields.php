@@ -3,7 +3,7 @@
 function dwwp_add_custom_meta() {
     add_meta_box(
       'srwp_meta',
-      'Product Calification',
+      __( 'Product Review', 'srpr_plugin' ),
       'srwp_meta_callback',
       'product_review',
       'normal',
@@ -24,7 +24,7 @@ function srwp_meta_callback($post){
 	?>
     <div class="meta-row">
 			<div class="meta-th">
-				<label for="product-name" class="dwwp-row-title"><?php _e( 'Product Name', 'wp-job-listing' ); ?></label>
+				<label for="product-name" class="dwwp-row-title"><?php _e( 'Product Name', 'srpr_plugin' ); ?></label>
 			</div>
 			<div class="meta-td">
 				<input type="text" class="dwwp-row-content" name="product-name" id="product-name"
@@ -35,7 +35,7 @@ function srwp_meta_callback($post){
 	</div>
         <div class="meta-row">
             <div class="meta-th">
-                <label for="release-date" class="dwwp-row-release-date"><?php _e( 'Release date', 'wp-job-listing' ); ?></label>
+                <label for="release-date" class="dwwp-row-release-date"><?php _e( 'Release date', 'srpr_plugin' ); ?></label>
             </div>
             <div class="meta-td">
                 <input type="text" name="release-date" id="release-date" class="datepicker" value="<?php if ( ! empty ( $dwwp_stored_meta['release-date'] ) ) {
@@ -46,7 +46,7 @@ function srwp_meta_callback($post){
 
         <div class="meta-row">
 			<div class="meta-th">
-				<label for="price" class="dwwp-row-title"><?php _e( 'Price', 'wp-job-listing' ); ?></label>
+				<label for="price" class="dwwp-row-title"><?php _e( 'Price', 'srpr_plugin' ); ?></label>
 			</div>
 			<div class="meta-td">
 				<input type="text" name="price" id="price" value="<?php if ( ! empty ( $dwwp_stored_meta['price'] ) ) {
@@ -56,7 +56,8 @@ function srwp_meta_callback($post){
 		</div>
 		<div class="meta-row">
 			<div class="meta-th">
-				<span>Rating</span>
+				
+				<span><?php _e( 'Rating', 'srpr_plugin' ); ?></span>
 			</div>
 			<div class="meta-th">
 				<div id="rateYo" data-rateyo-normal-fill="<?= $second_color['previewoption_field_second_color']  ?>" 
