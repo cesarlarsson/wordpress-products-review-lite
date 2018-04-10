@@ -24,6 +24,9 @@ require_once($dir ."srpr-product-review-fields.php");
 require_once($dir ."srpr-product-review-render-admin.php");
 require_once($dir ."srpr-image-upload-metabox.php");
 require_once($dir ."srpr-widget-definition.php");
+require_once($dir ."functions.php");
+require_once($dir ."srpr-frontend-display.php");
+
 
 
 

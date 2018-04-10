@@ -76,7 +76,7 @@ function srwp_meta_callback($post){
 		$editor = 'product_information';
 		$settings = array(
 			'textarea_rows' => 8,
-			'media_buttons' => false,
+			'media_buttons' => true,
 		);
 		wp_editor( $content, $editor, $settings);
         ?>

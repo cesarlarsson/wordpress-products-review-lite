@@ -47,7 +47,9 @@ function srwp_register_post_type(){
 	        'supports'            => array( 
 	        	'title', 
 	       /*  	'editor',  */
-	        	'author', 
+				'author', 
+				'comments',
+				'revisions',
 			/*	'custom-fields' */
 			'thumbnail'
 	        )
